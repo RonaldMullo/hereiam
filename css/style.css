@@ -1,0 +1,505 @@
+/* ===========================
+   BASIC RESET AND VARIABLES
+=========================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+:root {
+  /* High-contrast colors (AA) */
+  --color-bg: #f4f5fb;
+  --color-bg-panel: #ffffff;
+  --color-primary: #2b4cff;
+  --color-primary-dark: #1f36b8;
+  --color-accent: #ffb347;
+  --color-text: #1f2933;
+  --color-text-muted: #6b7280;
+  --color-border: #e5e7eb;
+
+  --color-mood-positive: #16a34a;
+  --color-mood-neutral: #6b7280;
+  --color-mood-negative: #dc2626;
+
+  /* Typography and spacing */
+  --font-base: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --radius-panel: 1rem;
+  --shadow-soft: 0 10px 25px rgba(15, 23, 42, 0.08);
+
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+}
+
+/* ===========================
+   BASE STYLES
+=========================== */
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-base);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+main {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto var(--space-xl);
+  padding: 0 var(--space-md) var(--space-xl);
+}
+
+/* Links and accessible focus */
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+a:hover,
+a:focus-visible {
+  text-decoration: underline;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+/* ===========================
+   HEADER
+=========================== */
+
+.site-header {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+  background-size: 200% 200%;              /* NEW: to animate the gradient */
+  animation: header-gradient 10s ease infinite alternate; /* NEW */
+  color: #ffffff;
+  padding: var(--space-lg) var(--space-md) var(--space-xl);
+  border-radius: 0 0 2rem 2rem;
+  margin-bottom: var(--space-xl);
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.25);
+}
+
+.site-header .brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.site-header img {
+  width: 52px;
+  height: 52px;
+}
+
+.site-header h1 {
+  font-size: 1.6rem;
+  margin: 0;
+}
+
+.tagline {
+  max-width: 960px;
+  margin: var(--space-sm) auto 0;
+  font-size: 0.95rem;
+  color: #e5e7eb;
+}
+
+@keyframes header-gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+/* ===========================
+   GENERAL PANEL
+=========================== */
+
+.panel {
+  background-color: var(--color-bg-panel);
+  border-radius: var(--radius-panel);
+  padding: var(--space-lg);
+  margin-bottom: var(--space-lg);
+  box-shadow: var(--shadow-soft);
+}
+
+.panel h2 {
+  font-size: 1.25rem;
+  margin-top: 0;
+  margin-bottom: var(--space-sm);
+}
+
+.panel p {
+  margin-top: 0;
+}
+
+/* ===========================
+   MOOD FORM
+=========================== */
+
+#mood-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+fieldset {
+  border: 1px solid var(--color-border);
+  border-radius: 0.75rem;
+  padding: var(--space-md);
+  margin: 0;
+}
+
+legend {
+  padding: 0 var(--space-xs);
+  font-weight: 600;
+}
+
+.mood-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  margin-top: var(--space-sm);
+}
+
+.mood-options label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: 999px;
+  border: 1px solid var(--color-border);
+  background-color: #f9fafb;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: background-color 0.15s ease, border-color 0.15s ease,
+    transform 0.15s ease;
+}
+
+.mood-options input[type="radio"] {
+  accent-color: var(--color-primary);
+}
+
+.mood-options label:hover {
+  background-color: #eef2ff;
+  border-color: var(--color-primary);
+  transform: translateY(-1px);
+}
+
+label[for="mood-notes"],
+label[for="reminder-frequency"] {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 90px;
+  padding: var(--space-sm);
+  border-radius: 0.75rem;
+  border: 1px solid var(--color-border);
+  font-family: inherit;
+  font-size: 0.95rem;
+}
+
+textarea:focus-visible {
+  outline: 2px solid var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+/* ===========================
+   BUTTONS
+=========================== */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  padding: 0.75rem 1.5rem;
+  border-radius: 999px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.primary-btn {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+  color: #ffffff;
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.1s ease;
+}
+
+.primary-btn:hover,
+.primary-btn:focus-visible {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 26px rgba(15, 23, 42, 0.25);
+  filter: brightness(1.03);
+}
+
+/* Soft click animation */
+.primary-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 6px 14px rgba(15, 23, 42, 0.2);
+}
+
+/* ===========================
+   SUPPORT SECTION (APIs)
+=========================== */
+
+.support-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+  margin-top: var(--space-md);
+}
+
+.support-card {
+  border-radius: 0.75rem;
+  border: 1px solid var(--color-border);
+  padding: var(--space-md);
+  background-color: #f9fafb;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease; /* NEW */
+}
+
+/* Advanced hover effect for support cards */
+.support-card:hover {
+  transform: translateY(-4px) scale(1.01); /* NEW */
+  box-shadow: 0 12px 25px rgba(15, 23, 42, 0.15); /* NEW */
+  background-color: #eef2ff; /* NEW */
+}
+
+.support-card h3 {
+  margin-top: 0;
+  margin-bottom: var(--space-xs);
+  font-size: 1rem;
+}
+
+.support-card p {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+/* Advanced flip card for "Daily Advice" */
+
+.flip-card {
+  perspective: 1000px;
+  position: relative;
+  overflow: visible;
+}
+
+.flip-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s ease;
+}
+
+.flip-card:hover .flip-inner,
+.flip-card:focus-within .flip-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-front,
+.flip-back {
+  position: relative;
+  backface-visibility: hidden;
+  min-height: 140px;
+}
+
+.flip-back {
+  position: absolute;
+  inset: 0;
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* ===========================
+   CALENDAR & HISTORY
+=========================== */
+
+.calendar {
+  margin-top: var(--space-md);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
+  gap: var(--space-xs);
+}
+
+.calendar-day {
+  border-radius: 0.5rem;
+  padding: var(--space-xs);
+  text-align: center;
+  font-size: 0.8rem;
+  font-weight: 600;
+  background-color: #e5e7eb;
+  color: #111827;
+  position: relative;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.15s ease, box-shadow 0.15s ease; /* NEW */
+}
+
+/* Calendar day hover effect */
+.calendar-day:hover {
+  transform: translateY(-2px) rotate(-1deg); /* NEW */
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.15); /* NEW */
+}
+
+/* Mood color coding */
+.calendar-day.mood-positive {
+  background-color: var(--color-mood-positive);
+  color: #f9fafb;
+}
+
+.calendar-day.mood-neutral {
+  background-color: var(--color-mood-neutral);
+  color: #f9fafb;
+}
+
+.calendar-day.mood-negative {
+  background-color: var(--color-mood-negative);
+  color: #f9fafb;
+}
+
+/* CSS ANIMATION: "new-entry" (add class via JS) */
+@keyframes pulse-entry {
+  0% {
+    transform: scale(0.9);
+    box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.5);
+  }
+  70% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 12px rgba(37, 99, 235, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(37, 99, 235, 0);
+  }
+}
+
+.calendar-day.new-entry {
+  animation: pulse-entry 0.6s ease-out;
+}
+
+.stats-summary {
+  margin-top: var(--space-md);
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
+.stats-summary span {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+/* ===========================
+   REMINDERS SECTION
+=========================== */
+
+#reminder-frequency {
+  margin-top: var(--space-xs);
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--color-border);
+  font-family: inherit;
+  font-size: 0.95rem;
+}
+
+#reminder-frequency:focus-visible {
+  outline: 2px solid var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.hint {
+  margin-top: var(--space-xs);
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+/* ===========================
+   FOOTER
+=========================== */
+
+footer {
+  margin-top: auto;
+  padding: var(--space-md);
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+@media (min-width: 640px) {
+  .site-header h1 {
+    font-size: 1.9rem;
+  }
+
+  .tagline {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 768px) {
+  main {
+    padding: 0 var(--space-lg) var(--space-xl);
+  }
+
+  .support-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .panel {
+    padding: var(--space-xl);
+  }
+}
+
+/* ===========================
+   DANGER BUTTON
+=========================== */
+
+.danger-btn {
+  background-color: #dc2626;
+  color: white;
+  margin-top: 1rem;
+  box-shadow: 0 6px 14px rgba(220, 38, 38, 0.25);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.danger-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(220, 38, 38, 0.35);
+}
+
+.danger-btn:active {
+  transform: translateY(0);
+}

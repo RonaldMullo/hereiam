@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Here I Am - Daily Mood & Emotional Care</title>
+
+  <meta name="description" content="Here I Am is a simple web app to track your daily mood, get personalized advice and activities, and reflect on your emotional well-being.">
+  <meta name="author" content="Ronald Mullo">
+
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <img src="/img/logo.svg" alt="Here I Am logo">
+      <h1>Here I Am - Mood & Emotional Care</h1>
+    </div>
+    <p class="tagline">Record how you feel, receive support, and take care of your emotional health.</p>
+  </header>
+
+  <main>
+    <!-- Section: mood registration -->
+    <section aria-labelledby="mood-title" class="panel">
+      <h2 id="mood-title">How are you feeling today?</h2>
+      <form id="mood-form">
+        <fieldset>
+          <legend>Select your mood</legend>
+          <div class="mood-options">
+            <label>
+              <input type="radio" name="mood" value="positive" required>
+              😊 Positive
+            </label>
+            <label>
+              <input type="radio" name="mood" value="neutral">
+              😐 Neutral
+            </label>
+            <label>
+              <input type="radio" name="mood" value="negative">
+              😔 Negative
+            </label>
+          </div>
+        </fieldset>
+
+        <label for="mood-notes">Notes of the day (optional)</label>
+        <textarea id="mood-notes" name="notes" rows="3" placeholder="What influenced your mood today?"></textarea>
+
+        <button type="submit" class="btn primary-btn">
+          Save my mood
+        </button>
+      </form>
+    </section>
+
+    <!-- Section: advice and activity (APIs) -->
+    <section aria-labelledby="support-title" class="panel">
+      <h2 id="support-title">Your support for today</h2>
+      <div class="support-grid">
+        <article class="support-card flip-card" aria-live="polite">
+          <div class="flip-inner">
+            <div class="flip-front">
+              <h3>Daily advice</h3>
+              <p id="advice-text">A mood-based piece of advice will appear here.</p>
+            </div>
+            <div class="flip-back">
+              <h3>Did you know...?</h3>
+              <p class="hint">
+                Changing small daily habits can have a big impact on your emotional well-being.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <article class="support-card" aria-live="polite">
+          <h3>Suggested activity</h3>
+          <p id="activity-text">An activity that may help you today will appear here.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Section: history / calendar + basic statistics -->
+    <section aria-labelledby="stats-title" class="panel">
+      <h2 id="stats-title">Your emotional history</h2>
+      <div id="mood-calendar" class="calendar" aria-label="Mood calendar"></div>
+
+      <div class="stats-summary" aria-live="polite">
+        <p>Total recorded days: <span id="total-days">0</span></p>
+        <p>Positive days: <span id="positive-days">0</span></p>
+        <p>Neutral days: <span id="neutral-days">0</span></p>
+        <p>Negative days: <span id="negative-days">0</span></p>
+      </div>
+      <button id="clear-history" class="btn danger-btn">
+  Clear mood history
+</button>
+
+    </section>
+
+    <!-- Section: reminders / simple configuration -->
+    <section aria-labelledby="settings-title" class="panel">
+      <h2 id="settings-title">Reminders</h2>
+      <label for="reminder-frequency">Reminder frequency</label>
+      <select id="reminder-frequency" name="reminder-frequency">
+        <option value="none">No reminders</option>
+        <option value="daily">Daily</option>
+        <option value="weekly">Weekly</option>
+      </select>
+      <p class="hint">* The information will be simulated within the app (no real emails will be sent).</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Here I Am · Built with HTML, CSS & JavaScript</p>
+  </footer>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
