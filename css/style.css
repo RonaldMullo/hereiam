@@ -1,5 +1,5 @@
 /* ===========================
-   RESET BÁSICO Y VARIABLES
+   BASIC RESET AND VARIABLES
 =========================== */
 
 *,
@@ -13,7 +13,7 @@ html {
 }
 
 :root {
-  /* Colores con buen contraste (AA) */
+  /* High-contrast colors (AA) */
   --color-bg: #f4f5fb;
   --color-bg-panel: #ffffff;
   --color-primary: #2b4cff;
@@ -27,7 +27,7 @@ html {
   --color-mood-neutral: #6b7280;
   --color-mood-negative: #dc2626;
 
-  /* Tipografía y espaciado */
+  /* Typography and spacing */
   --font-base: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --radius-panel: 1rem;
   --shadow-soft: 0 10px 25px rgba(15, 23, 42, 0.08);
@@ -40,7 +40,7 @@ html {
 }
 
 /* ===========================
-   ESTILOS BASE
+   BASE STYLES
 =========================== */
 
 body {
@@ -67,7 +67,7 @@ main {
   padding: 0 var(--space-md) var(--space-xl);
 }
 
-/* Enlaces y foco accesible */
+/* Links and accessible focus */
 a {
   color: var(--color-primary);
   text-decoration: none;
@@ -84,19 +84,18 @@ a:focus-visible {
 }
 
 /* ===========================
-   CABECERA
+   HEADER
 =========================== */
 
 .site-header {
   background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
-  background-size: 200% 200%;              /* NUEVO: para animar el gradiente */
-  animation: header-gradient 10s ease infinite alternate; /* NUEVO */
+  background-size: 200% 200%;              /* NEW: to animate the gradient */
+  animation: header-gradient 10s ease infinite alternate; /* NEW */
   color: #ffffff;
   padding: var(--space-lg) var(--space-md) var(--space-xl);
   border-radius: 0 0 2rem 2rem;
   margin-bottom: var(--space-xl);
   box-shadow: 0 18px 40px rgba(15, 23, 42, 0.25);
-
 }
 
 .site-header .brand {
@@ -123,6 +122,7 @@ a:focus-visible {
   font-size: 0.95rem;
   color: #e5e7eb;
 }
+
 @keyframes header-gradient {
   0% {
     background-position: 0% 50%;
@@ -133,7 +133,7 @@ a:focus-visible {
 }
 
 /* ===========================
-   PANEL GENERAL
+   GENERAL PANEL
 =========================== */
 
 .panel {
@@ -155,7 +155,7 @@ a:focus-visible {
 }
 
 /* ===========================
-   FORMULARIO DE ESTADO DE ÁNIMO
+   MOOD FORM
 =========================== */
 
 #mood-form {
@@ -228,9 +228,8 @@ textarea:focus-visible {
   border-color: var(--color-primary);
 }
 
-
 /* ===========================
-   BOTONES
+   BUTTONS
 =========================== */
 
 .btn {
@@ -260,15 +259,14 @@ textarea:focus-visible {
   filter: brightness(1.03);
 }
 
-/* Animación suave cuando se hace clic */
+/* Soft click animation */
 .primary-btn:active {
   transform: translateY(0);
   box-shadow: 0 6px 14px rgba(15, 23, 42, 0.2);
 }
 
-
 /* ===========================
-   SECCIÓN DE SOPORTE (APIs)
+   SUPPORT SECTION (APIs)
 =========================== */
 
 .support-grid {
@@ -283,16 +281,15 @@ textarea:focus-visible {
   border: 1px solid var(--color-border);
   padding: var(--space-md);
   background-color: #f9fafb;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease; /* NUEVO */
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease; /* NEW */
 }
 
-/* Hover avanzado en tarjetas de soporte */
+/* Advanced hover effect for support cards */
 .support-card:hover {
-  transform: translateY(-4px) scale(1.01); /* NUEVO */
-  box-shadow: 0 12px 25px rgba(15, 23, 42, 0.15); /* NUEVO */
-  background-color: #eef2ff; /* NUEVO */
+  transform: translateY(-4px) scale(1.01); /* NEW */
+  box-shadow: 0 12px 25px rgba(15, 23, 42, 0.15); /* NEW */
+  background-color: #eef2ff; /* NEW */
 }
-
 
 .support-card h3 {
   margin-top: 0;
@@ -305,7 +302,7 @@ textarea:focus-visible {
   font-size: 0.95rem;
 }
 
-/* Flip card avanzado para el "Consejo del día" */
+/* Advanced flip card for "Daily Advice" */
 
 .flip-card {
   perspective: 1000px;
@@ -342,9 +339,8 @@ textarea:focus-visible {
   justify-content: center;
 }
 
-
 /* ===========================
-   CALENDARIO E HISTORIAL
+   CALENDAR & HISTORY
 =========================== */
 
 .calendar {
@@ -367,17 +363,16 @@ textarea:focus-visible {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.15s ease, box-shadow 0.15s ease; /* NUEVO */
+  transition: transform 0.15s ease, box-shadow 0.15s ease; /* NEW */
 }
 
-/* Hover en días del calendario */
+/* Calendar day hover effect */
 .calendar-day:hover {
-  transform: translateY(-2px) rotate(-1deg); /* NUEVO */
-  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.15); /* NUEVO */
+  transform: translateY(-2px) rotate(-1deg); /* NEW */
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.15); /* NEW */
 }
 
-
-/* Colores según estado de ánimo */
+/* Mood color coding */
 .calendar-day.mood-positive {
   background-color: var(--color-mood-positive);
   color: #f9fafb;
@@ -393,7 +388,7 @@ textarea:focus-visible {
   color: #f9fafb;
 }
 
-/* ANIMACIÓN CSS: "nuevo día" (puedes añadir la clase new-entry desde JS) */
+/* CSS ANIMATION: "new-entry" (add class via JS) */
 @keyframes pulse-entry {
   0% {
     transform: scale(0.9);
@@ -425,7 +420,7 @@ textarea:focus-visible {
 }
 
 /* ===========================
-   SECCIÓN DE RECORDATORIOS
+   REMINDERS SECTION
 =========================== */
 
 #reminder-frequency {
@@ -487,6 +482,11 @@ footer {
     padding: var(--space-xl);
   }
 }
+
+/* ===========================
+   DANGER BUTTON
+=========================== */
+
 .danger-btn {
   background-color: #dc2626;
   color: white;
